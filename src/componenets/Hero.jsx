@@ -10,7 +10,7 @@ const Hero = () => {
     const [hasClicked, setHasClicked] = useState(false);
     const [loadedImages, setLoadedImages] = useState(0);
 
-    const totalImages = 3; // Update this to the number of images you have
+    const totalImages = 3;
     const nextImageRef = useRef(null);
     const currentImageRef = useRef(null);
 

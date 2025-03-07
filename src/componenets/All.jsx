@@ -12,7 +12,7 @@ const All = () => {
 
   return (
     <div className='w-screen relative overflow-x-hidden mt-7' id='algorithms'>
-      <div className='absolute top-10 left-1/2 transform -translate-x-1/2 text-white z-50 p-2 text-center'>
+      <div className='absolute top-10 left-1/2 transform -translate-x-1/2 text-white z-50 p-2 text-start'>
         <h1 className='text-4xl md:text-6xl special-font uppercase font-zentry'>
           <b>a</b>ll  <b>a</b>lgorithms
         </h1>
@@ -28,7 +28,7 @@ const All = () => {
             />
           </div>
 
-          <div className="relative grid grid-cols-2 gap-6 w-3/4 mt-32">
+          <div className="relative grid md:grid-cols-3 grid-cols-1 gap-6 mt-32">
             {section.map((item, index) => (
               <Cards 
                 key={item.id || index}
