@@ -28,12 +28,12 @@ const All = () => {
             />
           </div>
 
-          <div className="relative grid md:grid-cols-3 grid-cols-1 gap-6 mt-32">
+          <div className="relative grid lg:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-6 lg:gap-y-15 mt-40 md:mx-10 pb-15">
             {section.map((item, index) => (
               <Cards 
                 key={item.id || index}
                 title={item.title}
-                short_content={item.short_content}
+                content={item.content}
                 id={item.id}
                 example={item.example}
                 conclusion={item.conclusion}
