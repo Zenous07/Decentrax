@@ -1,8 +1,19 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Decentrax
 
-Currently, two official plugins are available:
+A comprehensive blockchain educational platform designed to help you understand various algorithms used in blockchain technology. Dive deep into the core concepts and mechanisms behind blockchain, explore how these algorithms work, and enhance your knowledge with detailed explanations and practical examples.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
+
+Real-world use cases and applications
+
+Interactive learning experience to master blockchain technology
+
+Why This Platform?
+
+Blockchain is a revolutionary technology powering cryptocurrencies, decentralized applications, and more. Understanding the algorithms behind it — such as consensus mechanisms, hashing, cryptography, and smart contracts — is crucial for developers, researchers, and enthusiasts. This platform bridges the gap between theory and practice by offering clear, detailed insights into blockchain algorithms.
+
+## Authors
+
+- [@Zenous07](https://www.github.com/Zenous07)
+
