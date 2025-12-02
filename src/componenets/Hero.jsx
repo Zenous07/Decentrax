@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
+export {DecryptedText} from './decryptText.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,7 +100,7 @@ const Hero = () => {
                     />
                 </div>
 
-                <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75">
+                <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75 text-white">
                     Decentr<b>a</b>x
                 </h1>
 
@@ -108,7 +109,7 @@ const Hero = () => {
                         <h1 className="special-font hero-heading text-blue-100">
                             Bl<b>o</b>ckified
                         </h1>
-
+                        
                         <p className="mb-5 font-robert-regular text-blue-100 text-4xl">
                             Decrypt <br />
                             The Edge 
