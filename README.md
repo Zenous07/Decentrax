@@ -1,19 +1,55 @@
+# 🔗 Decentrax – Blockchain Algorithm Learning Platform
 
-# Decentrax
+**Decentrax** is a **comprehensive blockchain educational platform** built to help learners understand the **core algorithms and mechanisms** behind blockchain technology.  
+It combines **detailed explanations**, **practical examples**, and **interactive features** to make learning blockchain concepts engaging and accessible.
 
-A comprehensive blockchain educational platform designed to help you understand various algorithms used in blockchain technology. Dive deep into the core concepts and mechanisms behind blockchain, explore how these algorithms work, and enhance your knowledge with detailed explanations and practical examples.
+---
 
-Features
+## 🌐 Live Demo
+[🔗 Visit Decentrax](https://zenous07.github.io/Decentrax/)
 
-Real-world use cases and applications
+---
 
-Interactive learning experience to master blockchain technology
+## ✨ Features
+- 📚 **In-Depth Learning** – Dive deep into blockchain algorithms.
+- 🌍 **Real-World Applications** – See how these algorithms power cryptocurrencies, decentralized apps, and more.
+- 🖥️ **Interactive Learning** – Engaging UI with animations and dynamic elements.
+- 🔒 **Core Topics Covered** – Consensus mechanisms, hashing, cryptography, and smart contracts.
+- 🧩 **Practical Examples** – Understand not just the theory but how it works in practice.
 
-Why This Platform?
+---
 
-Blockchain is a revolutionary technology powering cryptocurrencies, decentralized applications, and more. Understanding the algorithms behind it — such as consensus mechanisms, hashing, cryptography, and smart contracts — is crucial for developers, researchers, and enthusiasts. This platform bridges the gap between theory and practice by offering clear, detailed insights into blockchain algorithms.
+## 🛠️ Tech Stack
+| Technology     | Purpose |
+|----------------|---------|
+| **React.js**   | Frontend framework |
+| **Tailwind CSS** | Styling & responsive design |
+| **Appwrite**   | Backend services & authentication |
+| **GSAP**       | Advanced animations |
 
-## Authors
+---
 
-- [@Zenous07](https://www.github.com/Zenous07)
+## 🚀 Getting Started
 
+### 1️⃣ Clone & Setup Project
+```bash
+git clone https://github.com/Zenous-07/Decentrax.git
+cd Decentrax
+
+# Install dependencies
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+
+# Start development server
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
