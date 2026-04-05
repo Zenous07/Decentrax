@@ -28,12 +28,12 @@ const About = () => {
     })
 
   return (
-    <div id="about" className='min-h-screen w-screen'>
+    <div id="about" className='min-h-screen w-full'>
         <div className='relative mb-8 mt-36 flex flex-col items-center gap-5'>
             
             <AnimatedTitle 
             title="Forge The Le<b>d</b>ger <br /> H<b>a</b>sh Your Knowledge"
-            containerClass="mt-5 !text-black text-center"/>
+            containerClass="mt-5 !text-dark text-center"/>
             
             <div className='about-subtext'>
                 <p> Mint The Future</p>

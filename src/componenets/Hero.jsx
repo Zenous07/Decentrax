@@ -70,7 +70,7 @@ const Hero = () => {
     const getImageSource = (index) => `img/hero-${index}.jpg`;
     return (
         <div className="relative h-dvh w-screen overflow-x-hidden" id='home'>
-            <div id='image-frame' className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75">
+            <div id='image-frame' className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-surface">
                 <div>
                     <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
                         <div onClick={handleMiniImgClick} className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100">
@@ -100,17 +100,17 @@ const Hero = () => {
                     />
                 </div>
 
-                <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75 text-white">
+                <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-surface text-white">
                     Decentr<b>a</b>x
                 </h1>
 
                 <div className="absolute left-0 top-0 z-40 size-full">
                     <div className="mt-24 px-5 sm:px-10">
-                        <h1 className="special-font hero-heading text-blue-100">
+                        <h1 className="special-font hero-heading text-blue-subtitle">
                             Bl<b>o</b>ckified
                         </h1>
                         
-                        <p className="mb-5 font-robert-regular text-blue-100 text-4xl">
+                        <p className="mb-5 font-robert-regular text-blue-subtitle text-4xl">
                             Decrypt <br />
                             The Edge 
                             With Us

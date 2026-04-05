@@ -30,7 +30,7 @@ const Top = () => {
 
 
   return (
-    <section className='w-screen h-dvh relative overflow-hidden mt-7 bg-gray-500' id='top'>
+    <section className='w-screen h-dvh relative overflow-hidden mt-7 bg-dark/50' id='top'>
         <img 
           src='img/top.jpg'
           alt='background'
@@ -72,7 +72,7 @@ const Top = () => {
         </div>
 
         {!isLoading && (
-          <div className="absolute mt-[15dvh] hidden lg:flex gap-4 bg-black/70 px-4 py-2 rounded-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg border border-fuchsia-500">
+          <div className="absolute mt-[15dvh] hidden lg:flex gap-4 bg-black/70 px-4 py-2 rounded-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-xl border border-accent">
             {[...Array(5)].map((_, i) => (
               <div
                 key={i}

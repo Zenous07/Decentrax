@@ -6,14 +6,27 @@
   Tailwind will automatically create utilities like 'font-zentry' 
 */
 @theme {
+  /* Fonts */
   --font-circular-web: "circular-web", sans-serif;
   --font-general: "general", sans-serif;
   --font-robert-medium: "robert-medium", sans-serif;
   --font-robert-regular: "robert-regular", sans-serif;
   --font-zentry: "zentry", sans-serif;
+
+  /* Modern OKLCH Colors */
+  --color-primary: oklch(0.7 0.15 250);
+  --color-surface: oklch(0.9 0.02 260); /* #dfdff0 equivalent */
+  --color-accent: oklch(0.75 0.25 310); /* Modern Violet-ish */
+  --color-dark: oklch(0.15 0.01 260); /* Sleek Deep Blue/Black */
+  --color-blue-subtitle: oklch(0.95 0.02 260);
+  --color-violet-accent: oklch(0.6 0.25 285); /* #5d3fd3 equivalent */
+  
+  /* Additional v4 scale refinements */
+  --spacing-container: 2rem;
+  --radius-bento: 0.5rem;
 }
 
-/* Base Layer: Fonts and Body defaults */
+/* Base Layer: Global Reset & Defaults */
 @layer base {
   @font-face {
     font-family: "circular-web";
@@ -43,8 +56,10 @@
   body {
     width: 100dvw;
     overflow-x: hidden;
-    background-color: #dfdff0;
-    font-family: "General Sans", sans-serif;
+    background-color: var(--color-surface);
+    font-family: var(--font-general);
+    color: var(--color-dark);
+    @apply antialiased;
   }
 }
 
@@ -191,7 +206,7 @@
 .three-body {
   --uib-size: 35px;
   --uib-speed: 0.8s;
-  --uib-color: #5d3fd3;
+  --uib-color: var(--color-violet-accent);
   position: relative;
   display: inline-block;
   height: var(--uib-size);
