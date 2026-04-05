@@ -1,97 +1,161 @@
-import React, { useEffect, useState } from 'react';
-import Cards from './Cards.jsx';
-import { getTrendingAlgo } from '../appwrite.js';
-import { data } from '../data.js';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { data as fallbackData } from '../data';
+import NeuralCard from './NeuralCard';
+import AnimatedTitle from './AnimatedTitle';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { getTrendingAlgo } from '../appwrite';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Top = () => {
-  const [cardData, setCardData] = useState([]);
-  const [isLoading,setIsLoading] = useState(true);
+    const [algorithms, setAlgorithms] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const pulseRef = useRef(null);
+    const containerRef = useRef(null);
 
-  useEffect(() => {
-    const fetchTrending = async () => {
-      try {
-        const trend = await getTrendingAlgo();
-        console.log(trend);
-        setIsLoading(false);
+    useEffect(() => {
+        const fetchTrending = async () => {
+            setLoading(true);
+            try {
+                // Try fetching from Appwrite
+                const trendData = await getTrendingAlgo();
 
-        // Match IDs from trend with full details in data.js
-        const matchedData = trend.map((trendItem) =>
-          data.find((item) => item.id === trendItem.id)
-        ).filter(Boolean); // Remove undefined values
+                if (trendData && trendData.length > 0) {
+                    const enrichedData = trendData.map(item => {
+                        const baseInfo = fallbackData.find(f => f.id === item.id) || {};
+                        return { ...item, ...baseInfo };
+                    });
+                    setAlgorithms(enrichedData);
+                    setLoading(false); // Only stop loading on SUCCESS
+                } 
+                // If no data yet, we keep loading skeletons per user request
+            } catch (error) {
+                console.warn("DB Connection Terminated: Stuck in Neural Skeleton Mode until database is restored.", error);
+                // We no longer fallback to static data here to honor the 'stay on skeleton' request
+            }
+            // Finally removed to prevent skeleton disappearance on error
+        };
 
-        setCardData(matchedData);
-      } catch (error) {
-        console.error("Error fetching trending algorithms:", error);
-      }
-    };
+        fetchTrending();
+    }, []);
 
-    fetchTrending();
-  }, []);
+    // Neural Pulse Animation
+    useEffect(() => {
+        if (!loading && algorithms.length > 0 && pulseRef.current) {
+            const ctx = gsap.context(() => {
+                gsap.to(pulseRef.current, {
+                    x: '100vw',
+                    duration: 4,
+                    repeat: -1,
+                    ease: 'none',
+                    delay: 1
+                });
+            });
+            return () => ctx.revert();
+        }
+    }, [loading, algorithms]);
 
+    return (
+        <section
+            id="top-algorithms"
+            ref={containerRef}
+            className="relative min-h-screen w-screen bg-dark overflow-hidden flex flex-col justify-center py-20"
+        >
+            {/* Background Layers */}
+            <div className="absolute inset-0 neural-grid opacity-30" />
+            <div className="absolute inset-0 scanline-overlay opacity-20" />
 
-  return (
-    <section className='w-screen h-dvh relative overflow-hidden mt-7 bg-dark/50' id='top'>
-        <img 
-          src='img/top.jpg'
-          alt='background'
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <h1 className='absolute m-10 sm:m-5 sm:ml-10 text-white z-50 text-4xl md:text-6xl special-font uppercase font-zentry'>
-              Top Se<b>a</b>rched Algorithm
-        </h1>
-        <div className="absolute sm:mt-[10dvh] md:mt-[20dvh] lg:mt-[25dvh]">
-          {/* Card Container */}
-          <div className="grid md:grid-cols-2 lg:flex lg:flex-row sm:gap-4 gap-6 mx-8 overflow-x-auto scrollbar-hide relative mb-10">
-            {cardData.length > 0 ? (
-              <>
-                {cardData.map((item, index) => (
-                <Cards 
-                  key={index} 
-                  id={item.id}
-                  title={item.title}
-                  content={item.content}
-                />
-              ))}
-              
-              <Cards 
-                title="CheckOut More"
-                content="Explore more algorithms with detailed insights and real-world applications."
-                className="hidden md:block"
-                cardColour="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#44403c] via-[#78716c] to-[#d6d3d1] opacity-50"
-                titleColour="text-slate-400/70"
-                contentColour="text-slate-300/70"
-              />
-              </>
-            
-            ) : (
-              <p className="text-white absolute top-[50dvh]">Loading trending algorithms...</p>
-            )}
-          </div>
-        
-        
-        </div>
+            {/* Neural Pulse Beam */}
+            <div
+                ref={pulseRef}
+                className="absolute top-0 left-0 h-full w-20 pulse-beam z-10 -translate-x-full pointer-events-none"
+            />
 
-        {!isLoading && (
-          <div className="absolute mt-[15dvh] hidden lg:flex gap-4 bg-black/70 px-4 py-2 rounded-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-xl border border-accent">
-            {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className={`rounded-full size-2.5 bg-fuchsia-400`}
-                
-              />
-    ))}
-  </div>
-)}
+            <div className="container mx-auto px-5 md:px-10 z-20">
+                <div className="flex flex-col lg:flex-row gap-10 items-start">
 
+                    {/* Brutalist Sidebar Info */}
+                    <div className="hidden lg:flex flex-col gap-4 border-l border-white/10 pl-6 h-full font-robert-medium text-[10px] tracking-[0.3em] text-white/40 uppercase">
+                        <div className="flex flex-col gap-1">
+                            <span className="text-violet-accent">System_Status</span>
+                            <span className="text-white/80">Online_Scanning</span>
+                        </div>
+                        <div className="flex flex-col gap-1 mt-10">
+                            <span>Sector_7G</span>
+                            <span>Enc_Protocol_v4.2</span>
+                        </div>
+                        <div className="mt-auto py-10">
+                            <div className="size-2 bg-violet-accent animate-ping" />
+                        </div>
+                    </div>
 
+                    <div className="flex-1 w-full">
+                        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                            <AnimatedTitle
+                                title="Top<br />Algorithms"
+                                containerClass="!text-left !px-0"
+                            />
 
-        
-      
-    </section>
-  );
+                            <div className="hidden md:block text-right font-robert-medium text-xs tracking-widest text-white/30 uppercase">
+                                <p>Refreshed_Realtime</p>
+                                <p className="text-violet-accent">Data_Source: {loading ? 'SCANNING...' : 'CLOUD_CLUSTER'}</p>
+                            </div>
+                        </div>
+
+                        {/* Card Stream - Added no-scrollbar */}
+                        <div className="flex overflow-x-auto pb-10 gap-8 no-scrollbar snap-x snap-mandatory">
+                            {loading ? (
+                                // Render 5 Skeletons
+                                Array(5).fill(0).map((_, i) => (
+                                    <div key={`skeleton-${i}`} className="snap-center">
+                                        <NeuralCard isSkeleton={true} index={i} />
+                                    </div>
+                                ))
+                            ) : (
+                                algorithms?.map((algo, index) => (
+                                    algo && (
+                                        <div key={algo.$id || algo.id || `algo-${index}`} className="snap-center">
+                                            <NeuralCard
+                                                id={algo.$id || algo.id}
+                                                title={algo.title}
+                                                content={algo.content}
+                                                index={index}
+                                            />
+                                        </div>
+                                    )
+                                ))
+                            )}
+                        </div>
+
+                        {/* Stream Bottom Indicator */}
+                        <div className="mt-4 h-px w-full bg-white/5 relative">
+                            {!loading && (
+                                <motion.div
+                                    animate={{
+                                        width: ['0%', '100%'],
+                                        left: ['0%', '0%']
+                                    }}
+                                    transition={{
+                                        duration: 4,
+                                        repeat: Infinity,
+                                        ease: 'none',
+                                        delay: 1
+                                    }}
+                                    className="absolute top-0 h-full bg-linear-to-r from-transparent via-violet-accent to-transparent shadow-[0_0_10px_rgba(157,78,221,0.5)]"
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Floating Decorative Elements */}
+            <div className="absolute top-10 right-10 size-40 bg-violet-accent/5 rounded-full blur-[100px]" />
+            <div className="absolute bottom-10 left-10 size-64 bg-primary/5 rounded-full blur-[120px]" />
+        </section>
+    );
 };
 
 export default Top;
-
-
-//<div className="w-screen h-dvh overflow-hidden rounded-lg relative"></div>

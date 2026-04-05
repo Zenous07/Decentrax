@@ -15,7 +15,7 @@
 
   /* Modern OKLCH Colors */
   --color-primary: oklch(0.7 0.15 250);
-  --color-surface: oklch(0.9 0.02 260); /* #dfdff0 equivalent */
+  --color-surface: oklch(0.2 0.02 260); /* Deep Metallic Gray */
   --color-accent: oklch(0.75 0.25 310); /* Modern Violet-ish */
   --color-dark: oklch(0.15 0.01 260); /* Sleek Deep Blue/Black */
   --color-blue-subtitle: oklch(0.95 0.02 260);
@@ -92,6 +92,11 @@
   .special-font b {
     font-family: "zentry"; 
     font-feature-settings: "ss01" on;
+  }
+
+  .terminal-accent {
+    color: var(--color-violet-accent);
+    text-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
   }
 
   .hero-heading {
@@ -172,6 +177,71 @@
 
   .contact-clip-path-2 {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Terminal & Neural Grid Aesthetics */
+  .neural-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+
+  .scanline-overlay {
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.02),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.02)
+    );
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+  }
+
+  /* Animations */
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(800%); }
+  }
+
+  .animate-scanline {
+    animation: scanline 2.5s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
+  }
+
+  .pulse-beam {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(157, 78, 221, 0) 10%, 
+      rgba(157, 78, 221, 0.3) 50%, 
+      rgba(157, 78, 221, 0) 90%, 
+      transparent 100%
+    );
+    filter: blur(40px);
   }
 }
 
